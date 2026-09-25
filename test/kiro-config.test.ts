@@ -26,7 +26,7 @@ const byFile = (f: string) => hooks.find((h) => h.file === f)!;
 
 describe(".kiro/hooks", () => {
   it("every hook matches the IDE schema", () => {
-    expect(hooks.length).toBeGreaterThanOrEqual(6);
+    expect(hooks.length).toBeGreaterThanOrEqual(7);
     for (const { file, ...h } of hooks) {
       for (const k of Object.keys(h)) expect(HOOK_KEYS.has(k), `${file}: unknown key ${k}`).toBe(true);
       expect(typeof h.name, file).toBe("string");
@@ -44,6 +44,7 @@ describe(".kiro/hooks", () => {
   it("the shell guard matches Kiro's shell tool name", () => {
     const re = new RegExp(byFile("guard-suspicious-fetch.json").matcher);
     expect(re.test("run_command")).toBe(true);
+    expect(re.test("execute_bash")).toBe(true);
     expect(re.test("fs_write")).toBe(false);
   });
 
@@ -58,6 +59,16 @@ describe(".kiro/hooks", () => {
     for (const h of hooks) {
       const m = /node\s+(\S+\.m?js)/.exec(h.action.command ?? "");
       if (m) expect(existsSync(join(root, m[1])), `${h.file}: ${m[1]}`).toBe(true);
+    }
+  });
+});
+
+describe(".kiro/agents", () => {
+  it("custom agents do not redeclare MCP servers (profile servers are spawned without the workspace cwd and shadow mcp.json)", () => {
+    const dir = join(root, ".kiro", "agents");
+    for (const f of readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+      const agent = JSON.parse(readFileSync(join(dir, f), "utf8"));
+      expect(agent.mcpServers, f).toBeUndefined();
     }
   });
 });

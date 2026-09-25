@@ -68,3 +68,18 @@ describe("normalizeInput properties", () => {
     );
   });
 });
+
+describe("normalizeInput wrapper stripping", () => {
+  it("keeps a trailing quote that belongs to the path (regression for Property 9 counterexample)", () => {
+    const once = normalizeInput("a.com/'#a");
+    expect(once.ok && once.value.href).toBe("http://a.com/'");
+    const twice = normalizeInput(once.ok ? once.value.href : "");
+    expect(twice.ok && twice.value.href).toBe("http://a.com/'");
+  });
+  it("still strips quotes and angle brackets that wrap the whole link", () => {
+    for (const raw of ['"https://example.com/x"', "<https://example.com/x>", "'https://example.com/x'", "`https://example.com/x`"]) {
+      const r = normalizeInput(raw);
+      expect(r.ok && r.value.href).toBe("https://example.com/x");
+    }
+  });
+});

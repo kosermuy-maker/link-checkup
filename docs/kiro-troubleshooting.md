@@ -31,7 +31,28 @@ Google login (any plan), the log shows `"mcpDisabled":false`, so MCP is allowed.
 yourself. To check that hooks run at all, use the **Manual** hook `Run the full test suite (manual)` in
 the Agent Hooks panel.
 
-## 4. mcp.json details the IDE enforces
+## 4. MCP fails with "Connection closed" about 200 ms after start
+
+The agent resolves the active custom agent's own `mcpServers` with `toProfileResolvedServers()` →
+`Lur(servers, {origin})`, and that call passes **no `workspaceFolder`**. The stdio spawn then uses
+`cwd: config.cwd || workspaceFolder || process.cwd()`. For those servers that means the extension host's
+cwd (`/workspace` on our box, not the project folder), so `node bin/link-checkup-mcp.mjs` exits with
+"Cannot find module". `mergeServers()` also lets a profile server **shadow** the `mcp.json` server with the
+same name, which is why edits to `mcp.json` had no effect while `link-triage` was the active agent.
+
+**Fix:** custom agents don't redeclare the server. They select it with `"tools": ["@link-checkup"]`, and
+the `mcp.json` entry is spawned with `cwd = <workspace folder>`. The server's own relative-cwd issue can't
+be fixed with a placeholder: only `${ENV_VAR}` is expanded, and a relative `cwd` would also resolve
+against the extension host's cwd.
+
+## 5. File hooks don't fire when the agent edits via the shell
+
+In Spec mode the agent has no file-write tool; it edited `src/checks/brands.ts` with
+`execute_bash: sed -i …`. `PostFileSave` is only raised by file-write tools. The PostToolUse hook
+`run-tests-after-shell-edit.json` covers this: after each shell command it re-runs the tests only if
+`src/` or `test/` changed.
+
+## 6. mcp.json details the IDE enforces
 
 - Keys: `command`, `args`, `cwd`, `env`, `timeout`, `disabled`, `autoApprove`, `disabledTools`, … (zod schema).
 - Stdio servers are spawned with `cwd = config.cwd || <workspace folder>`, so `node bin/link-checkup-mcp.mjs` works.

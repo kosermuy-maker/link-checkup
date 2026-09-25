@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run tests after the agent changes code through the shell",
+      "description": "PostFileSave only fires for the agent's file-write tools. When the agent edits src/ or test/ with a shell command (e.g. sed -i in Spec mode, which has no write tool), this re-runs vitest — but only if src/ or test/ actually changed since the last check.",
+      "trigger": "PostToolUse",
+      "matcher": "([Ss]hell|[Bb]ash|[Ee]xecute|[Cc]ommand)",
+      "action": { "type": "command", "command": "node scripts/hooks/test-if-src-changed.mjs" },
+      "timeout": 180
+    }
+  ]
+}

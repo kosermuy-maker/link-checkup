@@ -23,7 +23,7 @@ export function refang(s: string): string {
 
 export function normalizeInput(raw: string): NormalizeResult {
   if (typeof raw !== "string") return fail("Please paste a URL.", "请粘贴一个链接。");
-  let s = raw.trim().replace(/^[<"'`]+|[>"'`]+$/g, "").trim();
+  let s = stripEnclosing(raw.trim());
   if (!s) return fail("Please paste a URL.", "请粘贴一个链接。");
   if (s.length > MAX_INPUT_LENGTH) {
     return fail(
@@ -88,6 +88,14 @@ export function normalizeInput(raw: string): NormalizeResult {
       schemeAssumed,
     },
   };
+}
+
+const CLOSER: Record<string, string> = { "<": ">", '"': '"', "'": "'", "`": "`" };
+
+/** Remove quotes/angle brackets that wrap the whole input (e.g. <https://x>, "x"), but keep a quote that is part of the URL. */
+function stripEnclosing(s: string): string {
+  while (s.length >= 2 && CLOSER[s[0]] !== undefined && s.endsWith(CLOSER[s[0]])) s = s.slice(1, -1).trim();
+  return s.replace(/^[<"'`]+/, "").trim();
 }
 
 function fail(en: string, zh: string): NormalizeResult {

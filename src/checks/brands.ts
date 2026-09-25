@@ -1,3 +1,4 @@
+// Curated list of official brand domains used by the lookalike check.
 /**
  * Official domains of frequently-imitated brands. Data only.
  * A host whose registrable domain is listed here is never flagged as a lookalike.

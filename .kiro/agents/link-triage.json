@@ -2,15 +2,6 @@
   "name": "link-triage",
   "description": "Screens suspicious links for a non-technical person WITHOUT opening them, using the Link Checkup MCP server, and answers with a clear verdict in English and 简体中文.",
   "prompt": "file://./prompts/link-triage.md",
-  "mcpServers": {
-    "link-checkup": {
-      "command": "node",
-      "args": [
-        "bin/link-checkup-mcp.mjs"
-      ],
-      "timeout": 60000
-    }
-  },
   "tools": [
     "read",
     "@link-checkup"
