@@ -85,7 +85,7 @@
   - [x] 8.4 MCP stdio server with `check_url` and `check_lookalike`; register in `.kiro/settings/mcp.json`
     - _Requirements: 11.3_
 
-- [ ] 9. Kiro integration and docs
+- [x] 9. Kiro integration and docs
   - [x] 9.1 `link-triage` custom agent in `.kiro/agents/` using the MCP server
   - [x] 9.2 Package the checker as a Kiro power in `powers/link-checkup/`
-  - [ ] 9.3 README with lesson → file map, screenshots, MIT license
+  - [x] 9.3 README with lesson → file map, screenshots, MIT license
