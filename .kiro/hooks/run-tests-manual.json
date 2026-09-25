@@ -1,0 +1,12 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run the full test suite (manual)",
+      "description": "On-demand check: click the play button in the Agent Hooks panel to run typecheck + vitest. Useful to confirm hooks execute at all, because the file-save hooks only fire on agent edits, not on manual saves.",
+      "trigger": "Manual",
+      "action": { "type": "command", "command": "npm run typecheck --silent && npm test --silent" },
+      "timeout": 240
+    }
+  ]
+}

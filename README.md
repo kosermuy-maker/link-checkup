@@ -70,6 +70,8 @@ API: `POST /api/check` with `{"url": "..."}` → JSON report (8 KB body limit, 3
 
 Deploying is optional (it's a plain Node server; any free Node host works). It is designed to run locally.
 
+> Hooks not firing or MCP panel empty in Kiro? See [docs/kiro-troubleshooting.md](docs/kiro-troubleshooting.md): trust the workspace, then **Reload Window**.
+
 ## How each Kiro lesson is used
 
 | # | Lesson | Where | How it is used |
