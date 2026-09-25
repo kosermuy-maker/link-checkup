@@ -4,7 +4,7 @@
     {
       "name": "Typecheck + test after every spec task",
       "description": "After Kiro completes a task from .kiro/specs/link-checkup/tasks.md, run the TypeScript compiler and the full test suite so a task is never marked done on a red build.",
-      "trigger": "PostTaskExecution",
+      "trigger": "PostTaskExec",
       "action": { "type": "command", "command": "npm run typecheck --silent && npm test --silent" },
       "timeout": 240
     }
