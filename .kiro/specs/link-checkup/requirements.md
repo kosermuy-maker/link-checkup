@@ -147,3 +147,14 @@ with whitespace or in mixed case), so that I don't have to clean it up before ch
 2. THE System SHALL provide a CLI `npm run check -- <url> [--json] [--offline]`.
 3. THE System SHALL provide an MCP stdio server exposing `check_url` and `check_lookalike` tools.
 4. THE API SHALL rate-limit each client to 30 checkups per minute and reject bodies over 8 KB.
+
+### Requirement 12: Raw IP address and non-standard port detection
+
+**User Story:** As a user, I want the tool to flag URLs that use a raw IP address as the host or a non-standard port, so that I am alerted to common obfuscation techniques that hide the true server identity.
+
+#### Acceptance Criteria
+
+1. WHEN the host in the submitted URL is an IPv4 or IPv6 literal address THEN THE System SHALL add a medium-severity finding with id `urlShape.ipHost`.
+2. WHEN the URL specifies a port other than 80 or 443 THEN THE System SHALL add a low-severity finding with id `urlShape.unusualPort` and SHALL NOT attempt to contact that port.
+3. WHEN the host is an IP literal AND the port is non-standard THEN THE System SHALL emit both findings independently.
+4. WHEN the host is a regular domain name and the port is 80 or 443 THEN THE System SHALL NOT emit either finding (no false positives).

@@ -89,3 +89,13 @@
   - [x] 9.1 `link-triage` custom agent in `.kiro/agents/` using the MCP server
   - [x] 9.2 Package the checker as a Kiro power in `powers/link-checkup/`
   - [x] 9.3 README with lesson → file map, screenshots, MIT license
+
+- [x] 10. Unit tests for IP-host and non-standard-port findings
+  - [x] 10.1 Create `test/urlShape.test.ts` with unit tests for `urlShapeFindings()`
+    - Test that an IPv4 literal host produces `urlShape.ipHost` (medium, 25 pts)
+    - Test that an IPv6 literal host produces `urlShape.ipHost` (medium, 25 pts)
+    - Test that a non-standard port (e.g. 8080) produces `urlShape.unusualPort` (low, 10 pts)
+    - Test that an IP host with a non-standard port produces both findings
+    - Test that a normal domain on port 443 produces neither finding
+    - Test that a normal domain on port 80 produces neither finding
+    - _Requirements: 12.1, 12.2, 12.3, 12.4_
