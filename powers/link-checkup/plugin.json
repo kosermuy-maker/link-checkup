@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "link-checkup",
+  "version": "0.1.0",
+  "description": "Screen suspicious links without opening them: domain age (RDAP), DNS, header-only redirect chain, TLS certificate, lookalike/typosquat detection and public blocklists (URLhaus, Phishing Army). Free, keyless, bilingual (EN/中文).",
+  "author": {
+    "name": "kosermuy-maker",
+    "url": "https://github.com/kosermuy-maker"
+  },
+  "keywords": ["phishing", "suspicious link", "url", "scam", "typosquatting", "lookalike domain", "is this link safe", "钓鱼", "可疑链接", "诈骗"],
+  "homepage": "https://github.com/kosermuy-maker/link-checkup",
+  "repository": "https://github.com/kosermuy-maker/link-checkup",
+  "license": "MIT"
+}

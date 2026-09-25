@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Block the agent from opening suspicious links directly",
+      "description": "Project rule: suspicious URLs are only ever analysed through Link Checkup (check_url MCP tool / npm run check). This PreToolUse hook blocks shell commands such as curl, wget or a browser that target hosts outside a small allowlist. A non-zero exit blocks the tool call and the reason is sent to the agent.",
+      "trigger": "PreToolUse",
+      "matcher": "([Ss]hell|[Bb]ash|[Ee]xecute|[Cc]ommand)",
+      "action": { "type": "command", "command": "node scripts/hooks/guard-shell.mjs" },
+      "timeout": 10
+    }
+  ]
+}

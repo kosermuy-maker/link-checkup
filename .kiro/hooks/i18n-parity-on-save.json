@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Check English/Chinese UI string parity",
+      "description": "Every UI string must exist in both en and zh. Runs when the agent edits public/i18n.js.",
+      "trigger": "PostFileSave",
+      "matcher": "(^|/)public/i18n\\.js$",
+      "action": { "type": "command", "command": "node scripts/hooks/check-i18n.mjs" },
+      "timeout": 30
+    }
+  ]
+}

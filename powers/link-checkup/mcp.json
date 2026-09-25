@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "link-checkup": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "--package=github:kosermuy-maker/link-checkup", "link-checkup-mcp"],
+      "env": {}
+    }
+  }
+}

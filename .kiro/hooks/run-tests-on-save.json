@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run tests when the agent saves source or test files",
+      "description": "Keeps the property-based and unit tests green: any agent edit under src/ or test/ re-runs vitest. Failures are fed back to the agent via stderr.",
+      "trigger": "PostFileSave",
+      "matcher": "(^|/)(src|test)/.*\\.ts$",
+      "action": { "type": "command", "command": "npm test --silent" },
+      "timeout": 180
+    }
+  ]
+}

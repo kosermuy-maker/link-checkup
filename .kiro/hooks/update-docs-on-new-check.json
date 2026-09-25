@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Update docs and steering when a new check is added",
+      "description": "When the agent creates a new file in src/checks/, make sure the check is wired up, translated, tested and documented.",
+      "trigger": "PostFileCreate",
+      "matcher": "(^|/)src/checks/[^/]+\\.ts$",
+      "action": {
+        "type": "agent",
+        "prompt": "A new file was just created in src/checks/. Follow the 'Adding a new check' checklist in .kiro/steering/structure.md and the point guide in .kiro/steering/adding-checks.md: (1) add its id to CheckId in src/types.ts and export it from src/checks/index.ts and CHECK_ORDER; (2) call it from src/checkup.ts through safeCheck(); (3) add bilingual labels under checks.<id> in BOTH the en and zh sections of public/i18n.js; (4) add tests in test/<name>.test.ts (and a fast-check property if the check has an invariant); (5) add a row to the 'Checks' table in README.md and update the tree in .kiro/steering/structure.md; (6) if the check contacts a user-supplied host, confirm it goes through src/net/safeRequest.ts per .kiro/steering/network-safety.md. Do not use real malicious URLs in tests."
+      }
+    }
+  ]
+}

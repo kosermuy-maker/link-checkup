@@ -86,6 +86,6 @@
     - _Requirements: 11.3_
 
 - [ ] 9. Kiro integration and docs
-  - [ ] 9.1 `link-triage` custom agent in `.kiro/agents/` using the MCP server
-  - [ ] 9.2 Package the checker as a Kiro power in `powers/link-checkup/`
+  - [x] 9.1 `link-triage` custom agent in `.kiro/agents/` using the MCP server
+  - [x] 9.2 Package the checker as a Kiro power in `powers/link-checkup/`
   - [ ] 9.3 README with lesson → file map, screenshots, MIT license
