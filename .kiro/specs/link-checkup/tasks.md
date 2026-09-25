@@ -75,14 +75,14 @@
   - [x] 7.2 End-to-end offline test of `runCheckup()` with injected fakes
     - _Requirements: 10.1, 10.5_
 
-- [ ] 8. Interfaces
-  - [ ] 8.1 HTTP server: static UI + `POST /api/check`, 8 KB body limit, 30/min rate limit
+- [x] 8. Interfaces
+  - [x] 8.1 HTTP server: static UI + `POST /api/check`, 8 KB body limit, 30/min rate limit
     - _Requirements: 11.1, 11.4_
-  - [ ] 8.2 Bilingual UI (English primary, 中文 toggle), score gauge, per-check cards, redirect chain
+  - [x] 8.2 Bilingual UI (English primary, 中文 toggle), score gauge, per-check cards, redirect chain
     - _Requirements: 11.1, 10.5_
-  - [ ] 8.3 CLI (`--json`, `--offline`, `--lang zh`)
+  - [x] 8.3 CLI (`--json`, `--offline`, `--lang zh`)
     - _Requirements: 11.2_
-  - [ ] 8.4 MCP stdio server with `check_url` and `check_lookalike`; register in `.kiro/settings/mcp.json`
+  - [x] 8.4 MCP stdio server with `check_url` and `check_lookalike`; register in `.kiro/settings/mcp.json`
     - _Requirements: 11.3_
 
 - [ ] 9. Kiro integration and docs

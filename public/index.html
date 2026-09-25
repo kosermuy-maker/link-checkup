@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Checkup · 可疑链接体检</title>
+  <meta name="description" content="Check a suspicious link without opening it." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="favicon.svg" alt="" width="28" height="28" />
+      <span class="name" data-i18n="appName">Link Checkup</span>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 data-i18n="headline">Check a suspicious link — without opening it</h1>
+      <p class="sub" data-i18n="subhead">Paste a URL from a text, email or chat. We look at its domain, redirects, certificate and public blocklists. The page itself is never loaded, so nothing can run on your device.</p>
+      <form id="form" autocomplete="off">
+        <label for="url" class="visually-hidden" data-i18n="inputLabel">Suspicious URL</label>
+        <input id="url" name="url" type="text" inputmode="url" spellcheck="false" maxlength="2048" data-i18n-placeholder="placeholder" placeholder="e.g. hxxps://secure-login.example[.]com/verify" required />
+        <button id="go" type="submit" data-i18n="check">Check link</button>
+      </form>
+      <div class="examples">
+        <span data-i18n="tryExamples">Try:</span>
+        <button type="button" class="chip" data-example="https://example.com">example.com</button>
+        <button type="button" class="chip" data-example="http://github.com">http://github.com</button>
+        <button type="button" class="chip warn" data-example="http://paypa1.example/login" data-i18n-title="syntheticHint" title="Synthetic lookalike on a reserved test domain">paypa1.example</button>
+        <button type="button" class="chip warn" data-example="https://www.paypal.com.account-verify.example/signin" data-i18n-title="syntheticHint" title="Synthetic lookalike on a reserved test domain">paypal.com.account-verify.example</button>
+        <button type="button" class="chip warn" data-example="https://аpple.example/id" data-i18n-title="syntheticHint" title="Synthetic lookalike on a reserved test domain">аpple.example (Cyrillic а)</button>
+      </div>
+    </section>
+
+    <section id="error" class="error" hidden></section>
+
+    <section id="loading" class="loading" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p data-i18n="loading">Checking — DNS, registration, redirects (headers only), certificate, blocklists…</p>
+    </section>
+
+    <section id="result" hidden>
+      <div class="verdict">
+        <div class="gauge" id="gauge"><div class="gauge-inner"><span id="score">0</span><small>/100</small></div></div>
+        <div class="verdict-text">
+          <div class="level" id="level"></div>
+          <p class="explanation" id="explanation"></p>
+          <p class="meta" id="meta"></p>
+        </div>
+      </div>
+      <div id="chain" class="chain" hidden>
+        <h2 data-i18n="chainTitle">Redirect chain (headers only)</h2>
+        <ol id="hops"></ol>
+      </div>
+      <div id="checks" class="checks"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer">Link Checkup never renders pages, runs scripts or downloads files. Data: RDAP, DNS-over-HTTPS, URLhaus, Phishing Army, local lookalike analysis. A low score is not a guarantee.</p>
+    <p><a href="https://github.com/kosermuy-maker/link-checkup">GitHub</a> · MIT · <span data-i18n="builtWith">Built with Kiro</span></p>
+  </footer>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

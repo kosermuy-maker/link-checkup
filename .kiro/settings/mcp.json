@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "link-checkup": {
+      "command": "node",
+      "args": ["bin/link-checkup-mcp.mjs"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": ["check_lookalike", "check_url"]
+    }
+  }
+}
